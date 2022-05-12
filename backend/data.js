@@ -19,7 +19,7 @@ const data = {
             category:'Shirt',
             image:'/images/p2.jpg',
             price:250,
-            countInStack:20,
+            countInStack:0,
             brand:'Addidas',
             rating:4.0,
             numReviews:10,
