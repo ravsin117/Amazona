@@ -6,6 +6,8 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Product from '../Component/Product';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../Component/LoadingBox';
+import MessageBox from '../Component/MessageBox';
 
 
 
@@ -57,8 +59,10 @@ const HomeScreen = () => {
       <h1>Featured Products</h1>
       <div className="products">
         {
-        loading ? (<div>Loading...</div>) :
-        error ? (<div>{error}</div>)
+        loading ? (<LoadingBox/>) :
+        error ? (
+          <MessageBox variant='danger'>{error}</MessageBox>
+        )
         :(
           <Row>
             {

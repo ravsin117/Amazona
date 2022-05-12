@@ -12,6 +12,9 @@ import Card from 'react-bootstrap/Card'
 import Badge from "react-bootstrap/Badge";
 import Button from 'react-bootstrap/esm/Button';
 import { Helmet } from 'react-helmet-async';
+import LoadingBox from '../Component/LoadingBox';
+import MessageBox from '../Component/MessageBox';
+import { getError } from '../utils';
 
 const reducer = (state,action) =>{
   switch(action.type){
@@ -51,22 +54,19 @@ const reducer = (state,action) =>{
           const result = await axios.get(`/api/products/slug/${slug}`);
           dispatch({ type: "FETCH_SUCCESS", payload: result.data });
         } catch (err) {
-          dispatch({ type: "FETCH_FAIL", payload: err.message });
+          dispatch({ type: "FETCH_FAIL", payload: getError(err) });
         }
       };
       fetchData();
     }, [slug]);
 
 
-
-
-
-
-
   return loading ? (
-    <h1>Loading...</h1>
+    <LoadingBox/>
+    
   ) : error ? (
-    <h1>{error}</h1>
+    <MessageBox>{error}</MessageBox>
+    
   ) : (
     <div>
       <Row>
